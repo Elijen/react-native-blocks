@@ -1,0 +1,25 @@
+{
+  "name": "react-native-blocks",
+  "version": "1.0.0",
+  "description": "Style react-native and react-native-web components just using props.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elijen/react-native-blocks.git"
+  },
+  "keywords": [
+    "react",
+    "stylesheets",
+    "react-native",
+    "react-native-web"
+  ],
+  "author": "Petr Peller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elijen/react-native-blocks/issues"
+  },
+  "homepage": "https://github.com/Elijen/react-native-blocks#readme"
+}
