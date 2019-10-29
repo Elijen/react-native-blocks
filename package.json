@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/Elijen/react-native-blocks/issues"
   },
-  "homepage": "https://github.com/Elijen/react-native-blocks#readme"
+  "homepage": "https://github.com/Elijen/react-native-blocks#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
