@@ -67,7 +67,8 @@ const KEYS = [
   "maxHeight",
   "alignItems",
   "alignSelf",
-  "justifyContent"
+  "justifyContent",
+  "overflow"
 ];
 
 const ALIASES = { radius: "borderRadius", bg: "backgroundColor" };
