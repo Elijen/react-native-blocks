@@ -1,10 +1,12 @@
 {
   "name": "react-native-blocks",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Style react-native and react-native-web components just using props.",
   "main": "index.tsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,18 @@
   "bugs": {
     "url": "https://github.com/Elijen/react-native-blocks/issues"
   },
-  "homepage": "https://github.com/Elijen/react-native-blocks#readme"
+  "homepage": "https://github.com/Elijen/react-native-blocks#readme",
+  "dependencies": {
+    "@types/react-native": "^0.60.22",
+    "babel-preset-expo": "^7.1.0",
+    "react-native-web": "^0.11.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@storybook/addon-actions": "^5.2.6",
+    "@storybook/addon-links": "^5.2.6",
+    "@storybook/addons": "^5.2.6",
+    "@storybook/react": "^5.2.6",
+    "babel-loader": "^8.0.6"
+  }
 }
