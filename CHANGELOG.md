@@ -1,4 +1,11 @@
-## 1.2.0 - 2019-12-13
+## Unpublished
+
+### Added
+
+- Type for `radius`
+- `left`, `right`, `top`, `bottom` props
+
+## [1.2.0] - 2019-12-13
 
 ### Added
 

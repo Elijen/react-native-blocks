@@ -37,7 +37,11 @@ type SupportedViewStyleUnion =
   | "alignItems"
   | "alignSelf"
   | "justifyContent"
-  | "overflow";
+  | "overflow"
+  | "left"
+  | "right"
+  | "top"
+  | "bottom";
 
 type SupportedViewStylesType = Pick<ViewStyle, SupportedViewStyleUnion>;
 
@@ -75,6 +79,8 @@ type CustomProps = {
   absolute: boolean;
   /** Sets `position: "relative"` */
   relative: boolean;
+  /** Alias for `borderRadius` */
+  radius: number;
 };
 
 interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> {}
@@ -149,7 +155,11 @@ const KEYS = [
   "alignItems",
   "alignSelf",
   "justifyContent",
-  "overflow"
+  "overflow",
+  "left",
+  "right",
+  "top",
+  "bottom"
 ];
 
 const ALIASES = { radius: "borderRadius", bg: "backgroundColor" };
