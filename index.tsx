@@ -42,18 +42,39 @@ type SupportedViewStyleUnion =
 type SupportedViewStylesType = Pick<ViewStyle, SupportedViewStyleUnion>;
 
 type CustomProps = {
+  /** Sets `flex: 1` */
   flex1: boolean;
+  /** Sets `flex: 2` */
   flex2: boolean;
+  /** Sets `flex: 3` */
   flex3: boolean;
+  /** Sets `flexDirection: "row"` */
   row: boolean;
+  /** Sets both `justifyContent: "center"` AND `alignItems: "center"` */
   center: boolean;
+  /** Sets `justifyContent: "center"` OR `alignItems: "center"` to center the content **horizontally** */
   centerHorizontal: boolean;
+  /** Sets `justifyContent: "center"` OR `alignItems: "center"` to center the content **vertically** */
   centerVertical: boolean;
+  /** Sets `backgroundColor` to given value */
   bg: string;
+  /** Sets both `width` and `height` to given value */
   size: number;
+  /**
+   * CSS-like border settings. Can set `borderWidth`, `borderColor` and `borderStyle` simultaneously. Examples:
+   * - `1 solid #f00`
+   * - `1 #f00`
+   * - `#ff2244`
+   * - `solid`
+   * - `1`
+   */
   border: string | number | (string | number)[];
   borderWidth: number;
   borderColor: string;
+  /** Sets `position: "absolute"` */
+  absolute: boolean;
+  /** Sets `position: "relative"` */
+  relative: boolean;
 };
 
 interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> {}
@@ -200,7 +221,9 @@ const STYLES = {
   borderTop: createBorderProp("borderTop"),
   borderBottom: createBorderProp("borderBottom"),
   borderLeft: createBorderProp("borderLeft"),
-  borderRight: createBorderProp("borderRight")
+  borderRight: createBorderProp("borderRight"),
+  absolute: () => ({ position: "absolute" }),
+  relative: () => ({ position: "relative" })
 };
 
 type BorderStylePrefixType =
