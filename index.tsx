@@ -62,6 +62,8 @@ type CustomProps = {
   centerVertical: boolean;
   /** Sets `backgroundColor` to given value */
   bg: string;
+  /** Sets `backgroundColor: "#fff"` */
+  bgWhite: boolean;
   /** Sets both `width` and `height` to given value */
   size: number;
   /**
@@ -81,6 +83,12 @@ type CustomProps = {
   relative: boolean;
   /** Alias for `borderRadius` */
   radius: number;
+  /** Style to override any other effects */
+  style: ViewStyle;
+  /** Sets zIndex to given value */
+  z: number;
+  /** If false, the component is not rendered */
+  if: boolean;
 };
 
 interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> {}
@@ -121,8 +129,6 @@ const computeStyles = props => {
     }
   });
 
-  console.log(style);
-
   return StyleSheet.create({
     block: style
   });
@@ -162,7 +168,7 @@ const KEYS = [
   "bottom"
 ];
 
-const ALIASES = { radius: "borderRadius", bg: "backgroundColor" };
+const ALIASES = { radius: "borderRadius", bg: "backgroundColor", z: "zIndex" };
 
 const createBorderProp = (prefix: BorderStylePrefixType) => props => {
   let border = props.border;
