@@ -101,7 +101,14 @@ export const withBlock = Component => props => {
     return null;
   }
 
-  return <Component {...restProps} style={[computedStyle.block, style]} />;
+  const passProps = {};
+  Object.keys(restProps).forEach(propName => {
+    if (ALL_PROP_NAMES.indexOf(propName) === -1) {
+      passProps[propName] = restProps[propName];
+    }
+  });
+
+  return <Component {...passProps} style={[computedStyle.block, style]} />;
 };
 
 export const Block: FunctionComponent<BlockProps> = withBlock(View);
@@ -241,6 +248,12 @@ const STYLES = {
   absolute: () => ({ position: "absolute" }),
   relative: () => ({ position: "relative" })
 };
+
+const ALL_PROP_NAMES = [
+  ...Object.keys(STYLES),
+  ...Object.keys(ALIASES),
+  ...KEYS
+];
 
 type BorderStylePrefixType =
   | "border"
