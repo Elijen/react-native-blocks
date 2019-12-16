@@ -3,7 +3,8 @@ import {
   View,
   StyleSheet,
   StyleSheetProperties,
-  ViewStyle
+  ViewStyle,
+  ViewProps
 } from "react-native";
 import { isColor, isWidth, isBorderStyle } from "./utils";
 
@@ -111,7 +112,7 @@ export const withBlock = Component => props => {
   return <Component {...passProps} style={[computedStyle.block, style]} />;
 };
 
-export const Block: FunctionComponent<BlockProps> = withBlock(View);
+export const Block: FunctionComponent<BlockProps & ViewProps> = withBlock(View);
 
 const computeStyles = props => {
   let style = {};

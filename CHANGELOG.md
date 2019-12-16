@@ -6,6 +6,11 @@
 - `left`, `right`, `top`, `bottom` props
 - `z` alias prop for `zIndex`
 
+### Changes
+
+- Only pass down unused props to the wrapped component
+- Added `ViewProps` to Block tipes
+
 ## [1.2.0] - 2019-12-13
 
 ### Added
