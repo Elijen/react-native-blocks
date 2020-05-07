@@ -1,6 +1,6 @@
 {
   "name": "react-native-blocks",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Style react-native and react-native-web components just using props.",
   "main": "index.tsx",
   "scripts": {
@@ -24,11 +24,9 @@
     "url": "https://github.com/Elijen/react-native-blocks/issues"
   },
   "homepage": "https://github.com/Elijen/react-native-blocks#readme",
-  "dependencies": {
-    "@types/react-native": "^0.60.22",
-    "babel-preset-expo": "^7.1.0",
-    "react": "^16.13.1",
-    "react-native-web": "^0.11.7"
+  "peerDependencies": {
+    "react": "*",
+    "react-native-web": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -36,6 +34,8 @@
     "@storybook/addon-links": "^5.2.6",
     "@storybook/addons": "^5.2.6",
     "@storybook/react": "^5.2.6",
-    "babel-loader": "^8.0.6"
+    "babel-loader": "^8.0.6",
+    "@types/react-native": "^0.60.22",
+    "babel-preset-expo": "^7.1.0"
   }
 }
