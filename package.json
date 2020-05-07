@@ -27,6 +27,7 @@
   "dependencies": {
     "@types/react-native": "^0.60.22",
     "babel-preset-expo": "^7.1.0",
+    "react": "^16.13.1",
     "react-native-web": "^0.11.7"
   },
   "devDependencies": {

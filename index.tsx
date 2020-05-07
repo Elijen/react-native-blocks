@@ -4,7 +4,7 @@ import {
   StyleSheet,
   StyleSheetProperties,
   ViewStyle,
-  ViewProps
+  ViewProps,
 } from "react-native";
 import { isColor, isWidth, isBorderStyle } from "./utils";
 
@@ -94,51 +94,61 @@ type CustomProps = {
 
 interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> {}
 
-export const withBlock = Component => props => {
-  const { style, ...restProps } = props;
-  const computedStyle = useMemo(() => computeStyles(props), [props]);
+export const asBlock = (Component) =>
+  React.forwardRef((props: any, ref) => {
+    const { style, ...restProps } = props;
+    const computedStyle = useMemo(() => computeStyles(props), [props]);
 
-  if (props.if === false) {
-    return null;
-  }
-
-  const passProps = {};
-  Object.keys(restProps).forEach(propName => {
-    if (ALL_PROP_NAMES.indexOf(propName) === -1) {
-      passProps[propName] = restProps[propName];
+    if (props.if === false) {
+      return null;
     }
-  });
 
-  return <Component {...passProps} style={[computedStyle.block, style]} />;
-};
+    const passProps = {};
+    Object.keys(restProps).forEach((propName) => {
+      if (ALL_PROP_NAMES.indexOf(propName) === -1) {
+        passProps[propName] = restProps[propName];
+      }
+    });
+
+    return (
+      <Component
+        {...passProps}
+        ref={ref}
+        style={[computedStyle.block, style]}
+      />
+    );
+  }) as any;
+
+/** @deprecated use asBlock instead */
+export const withBlock = asBlock;
 
 export const Block: FunctionComponent<BlockProps & ViewProps> = withBlock(View);
 
-const computeStyles = props => {
+const computeStyles = (props) => {
   let style = {};
-  Object.keys(props).forEach(key => {
+  Object.keys(props).forEach((key) => {
     if (STYLES[key]) {
       style = {
         ...style,
-        ...STYLES[key](props)
+        ...STYLES[key](props),
       };
     }
   });
 
-  KEYS.forEach(key => {
+  KEYS.forEach((key) => {
     if (typeof props[key] !== "undefined") {
       style[key] = props[key];
     }
   });
 
-  Object.keys(ALIASES).forEach(key => {
+  Object.keys(ALIASES).forEach((key) => {
     if (typeof props[key] !== "undefined") {
       style[ALIASES[key]] = props[key];
     }
   });
 
   return StyleSheet.create({
-    block: style
+    block: style,
   });
 };
 
@@ -173,19 +183,19 @@ const KEYS = [
   "left",
   "right",
   "top",
-  "bottom"
+  "bottom",
 ];
 
 const ALIASES = { radius: "borderRadius", bg: "backgroundColor", z: "zIndex" };
 
-const createBorderProp = (prefix: BorderStylePrefixType) => props => {
+const createBorderProp = (prefix: BorderStylePrefixType) => (props) => {
   let border = props.border;
   if (!Array.isArray(props.border)) {
     border = [border];
   }
 
   const style = {};
-  border.forEach(value => {
+  border.forEach((value) => {
     if (isColor(value)) {
       style[prefix + "Color"] = value;
     } else if (isWidth(value)) {
@@ -206,40 +216,40 @@ const createBorderProp = (prefix: BorderStylePrefixType) => props => {
 const STYLES = {
   row: () => ({ flexDirection: "row" }),
   center: () => ({ alignItems: "center", justifyContent: "center" }),
-  centerHorizontal: props => ({
-    [props.row ? "justifyContent" : "alignItems"]: "center"
+  centerHorizontal: (props) => ({
+    [props.row ? "justifyContent" : "alignItems"]: "center",
   }),
-  centerVertical: props => ({
-    [props.row ? "alignItems" : "justifyContent"]: "center"
+  centerVertical: (props) => ({
+    [props.row ? "alignItems" : "justifyContent"]: "center",
   }),
   flex1: () => ({ flex: 1 }),
   flex2: () => ({ flex: 2 }),
   flex3: () => ({ flex: 3 }),
   bordered: () => ({
     borderColor: "#E6E8EB",
-    borderWidth: StyleSheet.hairlineWidth
+    borderWidth: StyleSheet.hairlineWidth,
   }),
   borderedTop: () => ({
     borderTopColor: "#E6E8EB",
-    borderTopWidth: StyleSheet.hairlineWidth
+    borderTopWidth: StyleSheet.hairlineWidth,
   }),
   borderedBottom: () => ({
     borderBottomColor: "#E6E8EB",
-    borderBottomWidth: StyleSheet.hairlineWidth
+    borderBottomWidth: StyleSheet.hairlineWidth,
   }),
   borderedLeft: () => ({
     borderLeftColor: "#E6E8EB",
-    borderLeftWidth: StyleSheet.hairlineWidth
+    borderLeftWidth: StyleSheet.hairlineWidth,
   }),
   borderedRight: () => ({
     borderRightColor: "#E6E8EB",
-    borderRightWidth: StyleSheet.hairlineWidth
+    borderRightWidth: StyleSheet.hairlineWidth,
   }),
   bgWhite: () => ({ backgroundColor: "#FFF" }),
   bgGrey: () => ({ backgroundColor: "#f5f6f8" }),
-  size: props => ({
+  size: (props) => ({
     width: props.size,
-    height: props.size
+    height: props.size,
   }),
   border: createBorderProp("border"),
   borderTop: createBorderProp("borderTop"),
@@ -247,13 +257,13 @@ const STYLES = {
   borderLeft: createBorderProp("borderLeft"),
   borderRight: createBorderProp("borderRight"),
   absolute: () => ({ position: "absolute" }),
-  relative: () => ({ position: "relative" })
+  relative: () => ({ position: "relative" }),
 };
 
 const ALL_PROP_NAMES = [
   ...Object.keys(STYLES),
   ...Object.keys(ALIASES),
-  ...KEYS
+  ...KEYS,
 ];
 
 type BorderStylePrefixType =
