@@ -42,7 +42,15 @@ type SupportedViewStyleUnion =
   | "left"
   | "right"
   | "top"
-  | "bottom";
+  | "bottom"
+  | "borderBottomWidth"
+  | "borderBottomColor"
+  | "borderTopWidth"
+  | "borderTopColor"
+  | "borderLeftWidth"
+  | "borderLeftColor"
+  | "borderRightWidth"
+  | "borderRightColor";
 
 type SupportedViewStylesType = Pick<ViewStyle, SupportedViewStyleUnion>;
 
@@ -90,6 +98,16 @@ type CustomProps = {
   z: number;
   /** If false, the component is not rendered */
   if: boolean;
+  /** @deprecated Will be replaced by themes */
+  borderedBottom: boolean;
+  /** @deprecated Will be replaced by themes */
+  borderedTop: boolean;
+  /** @deprecated Will be replaced by themes */
+  borderedLeft: boolean;
+  /** @deprecated Will be replaced by themes */
+  borderedRight: boolean;
+  /** @deprecated Will be replaced by themes */
+  bordered: boolean;
 };
 
 interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> {}
