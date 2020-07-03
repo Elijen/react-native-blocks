@@ -145,7 +145,7 @@ export const Block: FunctionComponent<BlockProps & ViewProps> = withBlock(View);
 const computeStyles = (props) => {
   let style = {};
   Object.keys(props).forEach((key) => {
-    if (STYLES[key]) {
+    if (STYLES[key] && props[key]) {
       style = {
         ...style,
         ...STYLES[key](props),

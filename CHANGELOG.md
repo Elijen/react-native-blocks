@@ -1,3 +1,15 @@
+## Unreleased
+
+### Fixed
+
+- boolean props like `bordered` must be truthy to have an effect
+
+### Added
+
+- `tint` as alias for `tintColor`
+
+### Changes
+
 ## [1.4.0] - 2020-05-07
 
 ### Changes
