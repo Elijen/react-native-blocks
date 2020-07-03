@@ -110,7 +110,7 @@ type CustomProps = {
   bordered: boolean;
 };
 
-interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> {}
+interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> { }
 
 export const asBlock = (Component) =>
   React.forwardRef((props: any, ref) => {
@@ -204,7 +204,7 @@ const KEYS = [
   "bottom",
 ];
 
-const ALIASES = { radius: "borderRadius", bg: "backgroundColor", z: "zIndex" };
+const ALIASES = { radius: "borderRadius", bg: "backgroundColor", z: "zIndex", tint: "tintColor" };
 
 const createBorderProp = (prefix: BorderStylePrefixType) => (props) => {
   let border = props.border;
