@@ -1,6 +1,6 @@
 {
   "name": "react-native-blocks",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Style react-native and react-native-web components just using props.",
   "main": "index.tsx",
   "scripts": {
