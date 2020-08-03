@@ -1,4 +1,4 @@
-## Unreleased
+## [1.5.0] - 2020-08-03
 
 ### Fixed
 
@@ -7,6 +7,7 @@
 ### Added
 
 - `tint` as alias for `tintColor`
+- Added support for HTML JSX elements in `asBlock`
 
 ### Changes
 

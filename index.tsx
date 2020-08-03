@@ -110,7 +110,7 @@ type CustomProps = {
   bordered: boolean;
 };
 
-interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> { }
+interface BlockProps extends SupportedViewStylesType, Partial<CustomProps> {}
 
 export const asBlock = (Component) =>
   React.forwardRef((props: any, ref) => {
@@ -121,20 +121,27 @@ export const asBlock = (Component) =>
       return null;
     }
 
-    const passProps = {};
+    const passProps = {} as any;
     Object.keys(restProps).forEach((propName) => {
       if (ALL_PROP_NAMES.indexOf(propName) === -1) {
         passProps[propName] = restProps[propName];
       }
     });
 
-    return (
-      <Component
-        {...passProps}
-        ref={ref}
-        style={[computedStyle.block, style]}
-      />
-    );
+    passProps.style = [computedStyle.block, style];
+    passProps.ref = ref;
+
+    // support for HTML elements
+    if (typeof Component === "string") {
+      const { children, ...htmlProps } = passProps;
+      return React.createElement(
+        Component,
+        { ...htmlProps, style: StyleSheet.flatten(htmlProps.style) },
+        children
+      );
+    }
+
+    return <Component {...passProps} />;
   }) as any;
 
 /** @deprecated use asBlock instead */
@@ -204,7 +211,12 @@ const KEYS = [
   "bottom",
 ];
 
-const ALIASES = { radius: "borderRadius", bg: "backgroundColor", z: "zIndex", tint: "tintColor" };
+const ALIASES = {
+  radius: "borderRadius",
+  bg: "backgroundColor",
+  z: "zIndex",
+  tint: "tintColor",
+};
 
 const createBorderProp = (prefix: BorderStylePrefixType) => (props) => {
   let border = props.border;

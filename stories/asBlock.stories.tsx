@@ -42,3 +42,13 @@ export const forwardRef = () => {
     </View>
   );
 };
+
+const Div = asBlock("div");
+
+export const HTMLElementAsBlock = () => {
+  return (
+    <View>
+      <Div bg="red" size={100} />
+    </View>
+  );
+};
